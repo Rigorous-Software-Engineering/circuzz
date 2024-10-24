@@ -1,0 +1,14 @@
+FROM circuzz/corset-base
+
+# specific corset commit
+ARG CORSET_COMMIT
+
+# build, installation and clean-up of of corset
+RUN cd /circuzz/corset && \
+    git reset --hard ${CORSET_COMMIT} && \
+    cargo install --path . --locked && \
+    cd .. && \
+    rm -rf ./corset
+
+# set working dir to be the mounted app folder
+WORKDIR /app

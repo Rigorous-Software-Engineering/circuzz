@@ -1,0 +1,15 @@
+following relations do NOT HOLD!
+    - a ^ b == 0 <--> to a == b.
+    - a | b != 0 if a > 0 and b > 0 in the field.
+    - ((a | b) & c) <--> ((a & c) | (b & c))
+    - ((?a | ?b) | ?c) <--> (?a | (?b | ?c))
+    - ((?a ^ ?b) ^ ?c) <--> (?a ^ (?b ^ ?c))
+
+
+The rewrite (?a / ?a) --> 1 rule is only a correct transformation if
+we fail on ?a == 0. In the current generation this should be done by
+emitting an assume statement, which is translated into an assertion.
+
+Most of the boolean rules assume short-circuiting.
+
+a ^ b == 0 can be true if a == b AND if a ^ b == prime, therefore it is weakening

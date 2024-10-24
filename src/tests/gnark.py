@@ -1,0 +1,63 @@
+from circuzz.common.field import CurvePrime
+from circuzz.common.helper import generate_random_circuit
+from backends.gnark.emitter import EmitVisitor
+from backends.gnark.ir2gnark import IR2GnarkVisitor
+from circuzz.ir.config import GeneratorKind, IRConfig
+
+def test_gnark_generator(seed: int):
+
+    irConfig = IRConfig.from_dict({ \
+        "rewrite"  : {
+            "weakening_probability" : 0,
+            "min_rewrites" : 0,
+            "max_rewrites" : 0,
+            "rules" : {
+                "equivalence" : [],
+                "weakening" :[]
+            }
+        },
+        "generation": {
+            "generator": GeneratorKind.ARITHMETIC,
+
+            "constant_probability_weight" : 1,
+            "variable_probability_weight" : 1,
+            "unary_probability_weight"    : 1,
+            "binary_probability_weight"   : 1,
+            "relation_probability_weight" : 1,
+            "ternary_probability_weight"  : 1,
+
+            "max_expression_depth"           : 2,
+            "min_number_of_assertions"       : 1,
+            "max_number_of_assertions"       : 2,
+            "min_number_of_input_variables"  : 1,
+            "max_number_of_input_variables"  : 2,
+            "min_number_of_output_variables" : 1,
+            "max_number_of_output_variables" : 2,
+
+            "max_exponent_value" : 2,
+            "boundary_value_probability" : 0.5
+        },
+        "operators" : {
+            "relations"                   : ["<", ">", "<=", ">=", "==", "!="],
+            "boolean_unary_operators"     : ["!"],
+            "boolean_binary_operators"    : ["&&", "||", "^^"],
+            "arithmetic_unary_operators"  : ["-"],
+            "arithmetic_binary_operators" : ["+", "-", "*", "/", "^", "&", "|"],
+
+            "is_arithmetic_ternary_supported" : True,
+            "is_boolean_ternary_supported"    : True
+        }
+    })
+
+    circuit = generate_random_circuit(CurvePrime.BN254, False, irConfig, seed)
+    gnark = IR2GnarkVisitor().transform(circuit)
+    emitter = EmitVisitor()
+
+    print("/*")
+    print(str(circuit).replace("\n", "\n * "))
+    print(" */")
+    print()
+    print(emitter.emit(gnark.circuit_struct))
+    print()
+    print(emitter.emit(gnark.circuit_define))
+    # skip the whole test framework

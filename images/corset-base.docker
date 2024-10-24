@@ -1,0 +1,27 @@
+FROM circuzz/base
+
+# download (rust-)corset github project
+RUN git clone https://github.com/Consensys/corset.git /circuzz/corset
+
+# create the gnark project folder structure
+RUN mkdir -p /circuzz/bin && \
+    mkdir -p /circuzz/wizard && \
+    mkdir -p /circuzz/wizard/prover
+
+# NOTE: IMPORTANT: image build command must be called from project root
+#                  directory or files are not added! (should be done inside
+#                  the container script automatically)
+ADD res/go/corset/main.go /circuzz/wizard/prover/
+
+# uses go to download a specific linea and go-corset version based on a
+# hardcoded commit and run one build to cache it.
+RUN cd /circuzz/wizard/prover && \
+    go mod init prover && \
+    go get github.com/consensys/go-corset@2d0aad43bfbd && \
+    go get github.com/consensys/linea-monorepo/prover@ca278a0ae7d8 && \
+    go mod tidy && \
+    go build -o corset-prover main.go && \
+    mv corset-prover /circuzz/bin/corset-prover
+
+# register binaries inside of circuzz/bin
+ENV PATH="/circuzz/bin:${PATH}"

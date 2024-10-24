@@ -1,0 +1,156 @@
+{
+    "experiment" : {
+        "enable_exit_on_failure" : false,
+        "enable_working_dir_cleanup" : true,
+
+        "prove_and_verify_tuning_strategy" : "time",
+        "prove_and_verify_tuning_percentage" : 0.5
+    },
+
+    "corset": {
+        "bundle_size"  : 1,
+        "executions"   : 3,
+        "rust_corset_check_timeout" : 5,
+        "general_memory_limit" : 8000,
+        "guard_variable_probability" : 0.5
+    },
+
+    "ir" : {
+        "operators" : {
+            "relations"                   : ["==", "!="],
+            "boolean_unary_operators"     : ["!"],
+            "boolean_binary_operators"    : ["&&", "||"],
+            "arithmetic_unary_operators"  : [],
+            "arithmetic_binary_operators" : [],
+
+            "is_arithmetic_ternary_supported" : false,
+            "is_boolean_ternary_supported"    : true
+        },
+
+        "generation" : {
+            "generator" : "boolean",
+
+            "constant_probability_weight" : 1,
+            "variable_probability_weight" : 1,
+            "unary_probability_weight"    : 1,
+            "binary_probability_weight"   : 1,
+            "relation_probability_weight" : 1,
+            "ternary_probability_weight"  : 1,
+
+            "max_expression_depth"           : 4,
+            "min_number_of_assertions"       : 0,
+            "max_number_of_assertions"       : 2,
+            "min_number_of_input_variables"  : 0,
+            "max_number_of_input_variables"  : 2,
+            "min_number_of_output_variables" : 0,
+            "max_number_of_output_variables" : 2,
+
+            "max_exponent_value" : 4,
+            "boundary_value_probability" : 0.25
+        },
+
+        "rewrite" : {
+            "weakening_probability" : 0,
+            "min_rewrites" : 1,
+            "max_rewrites" : 64,
+            "rules" : {
+                "equivalence" : [
+                    { "name" : "zero-lor-des"
+                    , "match" : "(?a || F)"
+                    , "rewrite" : "?a"
+                    },
+                    { "name" : "zero-land-des"
+                    , "match" : "(?a && T)"
+                    , "rewrite" : "?a"
+                    },
+                    { "name" : "taut-lor"
+                    , "match" : "(?a || T)"
+                    , "rewrite" : "T"
+                    },
+                    { "name" : "contra-land"
+                    , "match" : "(?a && F)"
+                    , "rewrite" : "F"
+                    },
+                    { "name" : "assoc-lor"
+                    , "match" : "((?a || ?b) || ?c)"
+                    , "rewrite" : "(?a || (?b || ?c))"
+                    },
+                    { "name" : "assoc-land"
+                    , "match" : "((?a && ?b) && ?c)"
+                    , "rewrite" : "(?a && (?b && ?c))"
+                    },
+                    { "name" : "comm-lor"
+                    , "match" : "(?a || ?b)"
+                    , "rewrite" : "(?b || ?a)"
+                    },
+                    { "name" : "comm-lan"
+                    , "match" : "(?a && ?b)"
+                    , "rewrite" : "(?b && ?a)"
+                    },
+                    { "name" : "dist-lor-land"
+                    , "match" : "((?a && ?b) || ?c)"
+                    , "rewrite" : "((?a || ?c) && (?b || ?c))"
+                    },
+                    { "name" : "dist-land-lor"
+                    , "match" : "((?a || ?c) && (?b || ?c))"
+                    , "rewrite" : "((?a && ?b) || ?c)"
+                    },
+                    { "name" : "de-morgan-land-con"
+                    , "match" : "(!(?a && ?b))"
+                    , "rewrite" : "((!?a) || (!?b))"
+                    },
+                    { "name" : "de-morgan-land-des"
+                    , "match" : "((!?a) || (!?b))"
+                    , "rewrite" : "(!(?a && ?b))"
+                    },
+                    { "name" : "de-morgan-lor-con"
+                    , "match" : "(!(?a || ?b))"
+                    , "rewrite" : "((!?a) && (!?b))"
+                    },
+                    { "name" : "de-morgan-lor-des"
+                    , "match" : "((!?a) && (!?b))"
+                    , "rewrite" : "(!(?a || ?b))"
+                    },
+                    { "name" : "double-negation-des"
+                    , "match" : "(!(!?a))"
+                    , "rewrite" : "?a"
+                    },
+                    { "name" : "double-land-des"
+                    , "match" : "(?a && ?a)"
+                    , "rewrite" : "?a:bool"
+                    },
+                    { "name" : "double-lor-des"
+                    , "match" : "(?a || ?a)"
+                    , "rewrite" : "?a:bool"
+                    },
+                    { "name" : "zero-lor-con"
+                    , "match" : "?a:bool"
+                    , "rewrite" : "(?a || F)"
+                    },
+                    { "name" : "zero-land-con"
+                    , "match" : "?a:bool"
+                    , "rewrite" : "(?a && T)"
+                    },
+                    { "name" : "double-negation-con"
+                    , "match" : "?a:bool"
+                    , "rewrite" : "(!(!?a))"
+                    },
+                    { "name" : "double-land-con"
+                    , "match" : "?a:bool"
+                    , "rewrite" : "(?a && ?a)"
+                    },
+                    { "name" : "double-lor-con"
+                    , "match" : "?a:bool"
+                    , "rewrite" : "(?a || ?a)"
+                    }
+                ],
+                "weakening" : [
+                    { "name" : "assertion-weakening-with-and-to-lor"
+                    , "match" : "{assert (?a && ?b)}"
+                    , "rewrite" : "{assert (?a || ?b)}"
+                    }
+                ]
+            }
+        }
+    }
+}

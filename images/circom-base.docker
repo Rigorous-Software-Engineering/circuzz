@@ -1,0 +1,22 @@
+FROM circuzz/base
+
+# get special dependency needed for building circom from scratch
+RUN apt-get -y install \
+    nlohmann-json3-dev \
+    libgmp3-dev \
+    nasm
+
+# install newest version of snarkjs using npm
+RUN npm install -g snarkjs
+
+# download newest version of circomlib into the circuzz folder
+RUN git clone --depth 1 https://github.com/iden3/circomlib.git /circuzz/circomlib
+
+# download precomputed ptau file from snarkjs github
+# source: https://github.com/iden3/snarkjs
+RUN mkdir -p /circuzz/ptaus
+ADD https://storage.googleapis.com/zkevm/ptau/powersOfTau28_hez_final_17.ptau \
+    /circuzz/ptaus/powersOfTau28_hez_final_17.ptau
+
+# download circom github project (i.e. circom 2 which is the rust re-implementation)
+RUN git clone https://github.com/iden3/circom.git /circuzz/circom

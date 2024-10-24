@@ -1,0 +1,15 @@
+FROM circuzz/gnark-base
+
+# hash from gnark github project
+ARG GNARK_COMMIT
+
+# uses go to download a specific gnark version based on a commit and
+# run one build for caching
+RUN cd /circuzz/gnark/gnarkfuzz && \
+    go mod init gnarkfuzz && \
+    go get github.com/consensys/gnark@${GNARK_COMMIT} && \
+    go mod tidy && \
+    go build
+
+# set working dir to be the mounted app folder
+WORKDIR /app

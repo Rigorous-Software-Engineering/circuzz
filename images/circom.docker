@@ -1,0 +1,14 @@
+FROM circuzz/circom-base
+
+# specific circom commit
+ARG CIRCOM_COMMIT
+
+# build, installation and clean-up of of circom
+RUN cd /circuzz/circom && \
+    git reset --hard ${CIRCOM_COMMIT} && \
+    cargo install --path circom && \
+    cd .. && \
+    rm -rf ./circom
+
+# set working dir to be the mounted app folder
+WORKDIR /app

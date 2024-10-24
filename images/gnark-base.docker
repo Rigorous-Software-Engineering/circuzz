@@ -1,0 +1,11 @@
+FROM circuzz/base
+
+# create the gnark project folder structure
+RUN mkdir -p /circuzz/gnark && \
+    mkdir -p /circuzz/gnark/gnarkfuzz
+
+# NOTE: IMPORTANT: image build command must be called from project root
+#                  directory or files are not added! (should be done inside
+#                  the container script automatically)
+ADD res/go/gnark/gnarkfuzz.go /circuzz/gnark/gnarkfuzz/
+ADD res/go/gnark/template_test.go /circuzz/gnark/gnarkfuzz/

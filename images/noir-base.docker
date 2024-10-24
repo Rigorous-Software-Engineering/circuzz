@@ -1,0 +1,26 @@
+FROM circuzz/base
+
+# get special dependency needed for building noir from scratch
+RUN apt-get -y install \
+    libc++-dev \
+    jq \
+    lsb-release \
+    wget \
+    software-properties-common \
+    gnupg \
+    cmake \
+    ninja-build
+
+# install llvm version 16
+RUN wget https://apt.llvm.org/llvm.sh && \
+    chmod +x llvm.sh && \
+    ./llvm.sh 16 && \
+    rm ./llvm.sh
+
+# clone barettenberg prover for a build from scratch
+RUN git clone https://github.com/AztecProtocol/barretenberg.git /circuzz/barretenberg
+
+# installation of noir's nargo tool from scratch with specific version.
+#
+# NOTE: alternatively we could use noirup.
+RUN git clone https://github.com/noir-lang/noir.git /circuzz/noir
