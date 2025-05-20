@@ -1,0 +1,903 @@
+WARNING: explore data did not respect the set time limit!
+Removed 2 entries for 'bb prover error in MemBn254CrsFactory' in repetition 4
+
+ == Bug Nr 1: 'operator ~ (1/2)', circom == 
+
+circuits:
+    - min: 7, median: 169.0, max: 721
+
+exploration time:
+    - min: 38.25, median: 359.21, max: 1362.11
+
+timeouts: 0
+
+rewrite rules intersection: EMPTY SET
+
+errors:
+    - metamorphic violation for the witness generation output signals : 10
+
+structural information:
+circuit , property       , min , median , max
+c1      , assertions     , 0   , 1.0    , 6
+c2      , assertions     , 0   , 1.0    , 6
+c1      , assignments    , 1   , 1.0    , 2
+c2      , assignments    , 1   , 1.0    , 2
+c1      , assumptions    , 0   , 0.0    , 2
+c2      , assumptions    , 0   , 0.0    , 2
+c1      , input_signals  , 0   , 0.0    , 1
+c2      , input_signals  , 0   , 0.0    , 1
+c1      , output_signals , 1   , 1.0    , 2
+c2      , output_signals , 1   , 1.0    , 2
+c1      , node_size      , 4   , 31.5   , 110
+c2      , node_size      , 49  , 63.0   , 145
+
+pipelines:
+circuit , stage   , executions , success , time-min , time-median , time-max
+c1      , compile , 10         , 10      , 0.03     , 0.03        , 0.05
+c2      , compile , 10         , 10      , 0.03     , 0.04        , 0.09
+c1      , witness , 10         , 10      , 0.08     , 0.1         , 3.96
+c2      , witness , 10         , 10      , 0.08     , 0.1         , 3.9
+c1      , prove   , 2          , 2       , 11.96    , 12.99       , 14.02
+c2      , prove   , 2          , 1       , 13.03    , 13.34       , 13.65
+c1      , verify  , 2          , 2       , 11.99    , 12.3        , 12.61
+c2      , verify  , 1          , 1       , 12.64    , 12.64       , 12.64
+
+stage   , executions , success , time , percent
+compile , 20         , 20      , 1s   , 0.78\%
+witness , 20         , 20      , 10s  , 9.59\%
+prove   , 4          , 3       , 53s  , 52.51\%
+verify  , 3          , 3       , 37s  , 37.13\%
+
+
+ == Bug Nr 2: 'operator ~ (2/2)', circom == 
+
+circuits:
+    - min: 366, median: 656.5, max: 6391
+
+exploration time:
+    - min: 825.96, median: 1363.4, max: 8480.64
+
+timeouts: 0
+
+rewrite rules intersection: EMPTY SET
+
+errors:
+    - metamorphic violation for the witness generation output signals : 9
+    - metamorphic violation for the witness generation status : 1
+
+structural information:
+circuit , property       , min , median , max
+c1      , assertions     , 0   , 0.0    , 4
+c2      , assertions     , 0   , 0.0    , 4
+c1      , assignments    , 1   , 1.0    , 2
+c2      , assignments    , 1   , 1.0    , 2
+c1      , assumptions    , 0   , 0.0    , 1
+c2      , assumptions    , 0   , 0.0    , 1
+c1      , input_signals  , 0   , 0.0    , 1
+c2      , input_signals  , 0   , 0.0    , 1
+c1      , output_signals , 1   , 1.0    , 2
+c2      , output_signals , 1   , 1.0    , 2
+c1      , node_size      , 6   , 24.5   , 91
+c2      , node_size      , 25  , 57.5   , 107
+
+pipelines:
+circuit , stage   , executions , success , time-min , time-median , time-max
+c1      , compile , 10         , 10      , 0.02     , 0.03        , 0.04
+c2      , compile , 10         , 10      , 0.02     , 0.04        , 0.05
+c1      , witness , 10         , 10      , 0.07     , 0.1         , 0.12
+c2      , witness , 10         , 9       , 0.08     , 0.09        , 0.13
+c1      , prove   , -          , -       , -        , -           , -
+c2      , prove   , -          , -       , -        , -           , -
+c1      , verify  , -          , -       , -        , -           , -
+c2      , verify  , -          , -       , -        , -           , -
+
+stage   , executions , success , time , percent
+compile , 20         , 20      , 1s   , 26.34\%
+witness , 20         , 19      , 2s   , 73.66\%
+prove   , -          , -       , -    , -
+verify  , -          , -       , -    , -
+
+
+ == Bug Nr 3: 'inconsistent prime', circom == 
+
+circuits:
+    - min: 84, median: 993.5, max: 2178
+
+exploration time:
+    - min: 333.14, median: 1835.81, max: 3487.84
+
+timeouts: 0
+
+rewrite rules intersection: EMPTY SET
+
+errors:
+    - metamorphic violation for the witness generation output signals : 7
+    - metamorphic violation for the witness generation status : 3
+
+structural information:
+circuit , property       , min , median , max
+c1      , assertions     , 0   , 1.0    , 4
+c2      , assertions     , 0   , 1.0    , 4
+c1      , assignments    , 1   , 2.0    , 2
+c2      , assignments    , 1   , 2.0    , 2
+c1      , assumptions    , 0   , 0.0    , 2
+c2      , assumptions    , 0   , 0.0    , 2
+c1      , input_signals  , 0   , 0.5    , 2
+c2      , input_signals  , 0   , 0.5    , 2
+c1      , output_signals , 1   , 2.0    , 2
+c2      , output_signals , 1   , 2.0    , 2
+c1      , node_size      , 4   , 41.5   , 77
+c2      , node_size      , 52  , 83.5   , 138
+
+pipelines:
+circuit , stage   , executions , success , time-min , time-median , time-max
+c1      , compile , 10         , 10      , 0.02     , 0.03        , 0.04
+c2      , compile , 10         , 10      , 0.02     , 0.03        , 0.05
+c1      , witness , 10         , 7       , 0.08     , 0.09        , 3.4
+c2      , witness , 10         , 10      , 0.08     , 0.09        , 3.51
+c1      , prove   , 1          , 1       , 13.44    , 13.44       , 13.44
+c2      , prove   , 1          , 1       , 13.63    , 13.63       , 13.63
+c1      , verify  , 1          , 1       , 12.48    , 12.48       , 12.48
+c2      , verify  , 1          , 1       , 12.4     , 12.4        , 12.4
+
+stage   , executions , success , time , percent
+compile , 20         , 20      , 1s   , 1.11\%
+witness , 20         , 17      , 9s   , 14.08\%
+prove   , 2          , 2       , 27s  , 44.19\%
+verify  , 2          , 2       , 25s  , 40.62\%
+
+
+ == Bug Nr 4: 'wrong '~' evaluation on small curves', circom == 
+
+circuits:
+    - min: 31, median: 165.0, max: 435
+
+exploration time:
+    - min: 6.18, median: 394.18, max: 936.99
+
+timeouts: 0
+
+rewrite rules intersection: EMPTY SET
+
+errors:
+    - metamorphic violation for the witness generation output signals : 9
+    - metamorphic violation for the witness generation status : 1
+
+structural information:
+circuit , property       , min , median , max
+c1      , assertions     , 0   , 0.0    , 4
+c2      , assertions     , 0   , 0.0    , 4
+c1      , assignments    , 1   , 1.0    , 2
+c2      , assignments    , 1   , 1.0    , 2
+c1      , assumptions    , 0   , 0.0    , 1
+c2      , assumptions    , 0   , 0.0    , 1
+c1      , input_signals  , 0   , 0.0    , 2
+c2      , input_signals  , 0   , 0.0    , 2
+c1      , output_signals , 1   , 1.0    , 2
+c2      , output_signals , 1   , 1.0    , 2
+c1      , node_size      , 5   , 36.5   , 55
+c2      , node_size      , 36  , 77.5   , 109
+
+pipelines:
+circuit , stage   , executions , success , time-min , time-median , time-max
+c1      , compile , 10         , 10      , 0.02     , 0.04        , 0.05
+c2      , compile , 10         , 10      , 0.03     , 0.04        , 0.06
+c1      , witness , 10         , 10      , 0.08     , 0.12        , 4.49
+c2      , witness , 10         , 9       , 0.08     , 0.11        , 4.54
+c1      , prove   , -          , -       , -        , -           , -
+c2      , prove   , -          , -       , -        , -           , -
+c1      , verify  , -          , -       , -        , -           , -
+c2      , verify  , -          , -       , -        , -           , -
+
+stage   , executions , success , time , percent
+compile , 20         , 20      , 1s   , 2.63\%
+witness , 20         , 19      , 28s  , 97.37\%
+prove   , -          , -       , -    , -
+verify  , -          , -       , -    , -
+
+
+ == Bug Nr 5: 'expansion and native flags', corset == 
+
+circuits:
+    - min: 1, median: 19.0, max: 68
+
+exploration time:
+    - min: 5.3, median: 193.28, max: 444.28
+
+timeouts: 0
+
+rewrite rules intersection:
+    - double-land-con (34)
+    - double-lor-con (32)
+    - zero-land-des (23)
+
+errors:
+    - metamorphic violation (flags with different constraints) : 7
+    - metamorphic violation (transformations) : 3
+
+structural information:
+circuit , property       , min , median , max
+c1      , assertions     , 2   , 4.0    , 8
+c2      , assertions     , 2   , 4.0    , 8
+c1      , assignments    , 0   , 1.5    , 2
+c2      , assignments    , 0   , 1.5    , 2
+c1      , assumptions    , 0   , 0.0    , 0
+c2      , assumptions    , 0   , 0.0    , 0
+c1      , input_signals  , 1   , 1.5    , 2
+c2      , input_signals  , 1   , 1.5    , 2
+c1      , output_signals , 0   , 1.5    , 2
+c2      , output_signals , 0   , 1.5    , 2
+c1      , node_size      , 20  , 58.5   , 88
+c2      , node_size      , 20  , 92.0   , 162
+
+pipelines:
+circuit , stage   , executions , success , time-min , time-median , time-max
+c1      , check   , 10         , 0       , 0.01     , 0.02        , 4.69
+c2      , check   , 10         , 0       , 0.01     , 0.02        , 4.69
+c1      , compile , -          , -       , -        , -           , -
+c2      , compile , -          , -       , -        , -           , -
+c1      , witness , -          , -       , -        , -           , -
+c2      , witness , -          , -       , -        , -           , -
+c1      , prove   , -          , -       , -        , -           , -
+c2      , prove   , -          , -       , -        , -           , -
+c1      , verify  , -          , -       , -        , -           , -
+c2      , verify  , -          , -       , -        , -           , -
+
+stage   , executions , success , time , percent
+check   , 10         , 0       , 5s   , 100.0\%
+compile , -          , -       , -    , -
+witness , -          , -       , -    , -
+prove   , -          , -       , -    , -
+verify  , -          , -       , -    , -
+
+
+ == Bug Nr 6: 'wrong constraint for expansion', corset == 
+
+circuits:
+    - min: 4, median: 67.0, max: 239
+
+exploration time:
+    - min: 13.05, median: 417.07, max: 1525.66
+
+timeouts: 0
+
+rewrite rules intersection:
+    - zero-lor-con (35)
+
+errors:
+    - metamorphic violation (flags with different constraints) : 10
+
+structural information:
+circuit , property       , min , median , max
+c1      , assertions     , 1   , 2.5    , 5
+c2      , assertions     , 1   , 2.5    , 5
+c1      , assignments    , 0   , 1.0    , 2
+c2      , assignments    , 0   , 1.0    , 2
+c1      , assumptions    , 0   , 0.0    , 0
+c2      , assumptions    , 0   , 0.0    , 0
+c1      , input_signals  , 0   , 1.0    , 2
+c2      , input_signals  , 0   , 1.0    , 2
+c1      , output_signals , 0   , 1.0    , 2
+c2      , output_signals , 0   , 1.0    , 2
+c1      , node_size      , 16  , 60.0   , 83
+c2      , node_size      , 50  , 72.0   , 109
+
+pipelines:
+circuit , stage   , executions , success , time-min , time-median , time-max
+c1      , check   , 10         , 7       , 0.01     , 0.02        , 0.37
+c2      , check   , 10         , 7       , 0.01     , 0.02        , 0.37
+c1      , compile , -          , -       , -        , -           , -
+c2      , compile , -          , -       , -        , -           , -
+c1      , witness , -          , -       , -        , -           , -
+c2      , witness , -          , -       , -        , -           , -
+c1      , prove   , -          , -       , -        , -           , -
+c2      , prove   , -          , -       , -        , -           , -
+c1      , verify  , -          , -       , -        , -           , -
+c2      , verify  , -          , -       , -        , -           , -
+
+stage   , executions , success , time , percent
+check   , 10         , 7       , 1s   , 100.0\%
+compile , -          , -       , -    , -
+witness , -          , -       , -    , -
+prove   , -          , -       , -    , -
+verify  , -          , -       , -    , -
+
+
+ == Bug Nr 7: 'reworked ifs', corset == 
+
+circuits:
+    - min: 58, median: 297.5, max: 866
+
+exploration time:
+    - min: 297.37, median: 1985.07, max: 4736.58
+
+timeouts: 0
+
+rewrite rules intersection:
+    - double-land-con (36)
+
+errors:
+    - metamorphic violation (flags with different constraints) : 8
+    - metamorphic violation (transformations) : 2
+
+structural information:
+circuit , property       , min , median , max
+c1      , assertions     , 1   , 2.5    , 4
+c2      , assertions     , 1   , 2.5    , 4
+c1      , assignments    , 0   , 1.0    , 2
+c2      , assignments    , 0   , 1.0    , 2
+c1      , assumptions    , 0   , 0.0    , 0
+c2      , assumptions    , 0   , 0.0    , 0
+c1      , input_signals  , 0   , 1.0    , 2
+c2      , input_signals  , 0   , 1.0    , 2
+c1      , output_signals , 0   , 1.0    , 2
+c2      , output_signals , 0   , 1.0    , 2
+c1      , node_size      , 20  , 41.0   , 70
+c2      , node_size      , 36  , 73.0   , 87
+
+pipelines:
+circuit , stage   , executions , success , time-min , time-median , time-max
+c1      , check   , 10         , 6       , 0.01     , 0.03        , 0.49
+c2      , check   , 10         , 6       , 0.01     , 0.03        , 0.49
+c1      , compile , -          , -       , -        , -           , -
+c2      , compile , -          , -       , -        , -           , -
+c1      , witness , -          , -       , -        , -           , -
+c2      , witness , -          , -       , -        , -           , -
+c1      , prove   , -          , -       , -        , -           , -
+c2      , prove   , -          , -       , -        , -           , -
+c1      , verify  , -          , -       , -        , -           , -
+c2      , verify  , -          , -       , -        , -           , -
+
+stage   , executions , success , time , percent
+check   , 10         , 6       , 1s   , 100.0\%
+compile , -          , -       , -    , -
+witness , -          , -       , -    , -
+prove   , -          , -       , -    , -
+verify  , -          , -       , -    , -
+
+
+ == Bug Nr 8: 'wrong evaluation of normalized loobean', corset == 
+
+circuits:
+    - min: 4, median: 95.5, max: 389
+
+exploration time:
+    - min: 11.0, median: 449.99, max: 2644.53
+
+timeouts: 0
+
+rewrite rules intersection:
+    - comm-lor (20)
+    - zero-lor-con (30)
+
+errors:
+    - metamorphic violation (transformations) : 9
+    - oracle violation for constraint checker and verifier : 1
+
+structural information:
+circuit , property       , min , median , max
+c1      , assertions     , 1   , 3.5    , 7
+c2      , assertions     , 1   , 3.5    , 7
+c1      , assignments    , 0   , 1.0    , 2
+c2      , assignments    , 0   , 1.0    , 2
+c1      , assumptions    , 0   , 0.0    , 0
+c2      , assumptions    , 0   , 0.0    , 0
+c1      , input_signals  , 1   , 1.0    , 2
+c2      , input_signals  , 1   , 1.0    , 2
+c1      , output_signals , 0   , 1.0    , 2
+c2      , output_signals , 0   , 1.0    , 2
+c1      , node_size      , 13  , 34.5   , 76
+c2      , node_size      , 10  , 79.0   , 179
+
+pipelines:
+circuit , stage   , executions , success , time-min , time-median , time-max
+c1      , check   , 10         , 0       , 0.01     , 0.02        , 0.37
+c2      , check   , 10         , 0       , 0.01     , 0.02        , 0.37
+c1      , compile , 1          , 1       , 0.02     , 0.02        , 0.02
+c2      , compile , 1          , 1       , 0.02     , 0.02        , 0.02
+c1      , witness , 1          , 1       , 0.0      , 0.0         , 0.0
+c2      , witness , 1          , 1       , 0.0      , 0.0         , 0.0
+c1      , prove   , 1          , 1       , 0.0      , 0.0         , 0.0
+c2      , prove   , 1          , 1       , 0.0      , 0.0         , 0.0
+c1      , verify  , 1          , 1       , 0.0      , 0.0         , 0.0
+c2      , verify  , 1          , 1       , 0.0      , 0.0         , 0.0
+
+stage   , executions , success , time , percent
+check   , 10         , 0       , 1s   , 96.02\%
+compile , 1          , 1       , <1s  , 3.69\%
+witness , 1          , 1       , <1s  , 0.08\%
+prove   , 1          , 1       , <1s  , 0.12\%
+verify  , 1          , 1       , <1s  , 0.09\%
+
+
+ == Bug Nr 9: 'api.Or', gnark == 
+
+circuits:
+    - min: 27, median: 225.0, max: 1116
+
+exploration time:
+    - min: 277.98, median: 1102.08, max: 4210.2
+
+timeouts: 0
+
+rewrite rules intersection:
+    - zero-and (14)
+
+errors:
+    - metamorphic violation in test cases : 10
+
+structural information:
+circuit , property       , min , median , max
+c1      , assertions     , 1   , 1.5    , 5
+c2      , assertions     , 1   , 1.5    , 5
+c1      , assignments    , 0   , 1.0    , 2
+c2      , assignments    , 0   , 1.0    , 2
+c1      , assumptions    , 0   , 0.0    , 0
+c2      , assumptions    , 0   , 0.0    , 0
+c1      , input_signals  , 0   , 1.0    , 2
+c2      , input_signals  , 0   , 1.0    , 2
+c1      , output_signals , 0   , 1.0    , 2
+c2      , output_signals , 0   , 1.0    , 2
+c1      , node_size      , 8   , 37.5   , 117
+c2      , node_size      , 46  , 107.5  , 300
+
+pipelines:
+circuit , stage   , executions , success , time-min , time-median , time-max
+c1      , compile , 10         , 10      , 0.0      , 0.03        , 0.1
+c2      , compile , 10         , 7       , 0.01     , 0.09        , 0.17
+c1      , witness , 10         , 4       , 0.0      , 0.01        , 0.02
+c2      , witness , 7          , 6       , 0.02     , 0.06        , 0.13
+c1      , prove   , -          , -       , -        , -           , -
+c2      , prove   , -          , -       , -        , -           , -
+c1      , verify  , -          , -       , -        , -           , -
+c2      , verify  , -          , -       , -        , -           , -
+
+stage   , executions , success , time , percent
+compile , 20         , 17      , 1s   , 73.11\%
+witness , 17         , 10      , <1s  , 26.89\%
+prove   , -          , -       , -    , -
+verify  , -          , -       , -    , -
+
+
+ == Bug Nr 10: 'api.AssertIsLessOrEqual', gnark == 
+
+circuits:
+    - min: 36, median: 324.5, max: 886
+
+exploration time:
+    - min: 415.47, median: 1495.37, max: 3461.28
+
+timeouts: 0
+
+rewrite rules intersection: EMPTY SET
+
+errors:
+    - metamorphic violation in test cases : 10
+
+structural information:
+circuit , property       , min , median , max
+c1      , assertions     , 1   , 2.5    , 5
+c2      , assertions     , 1   , 2.5    , 5
+c1      , assignments    , 0   , 1.0    , 2
+c2      , assignments    , 0   , 1.0    , 2
+c1      , assumptions    , 0   , 0.0    , 2
+c2      , assumptions    , 0   , 0.0    , 2
+c1      , input_signals  , 0   , 0.0    , 2
+c2      , input_signals  , 0   , 0.0    , 2
+c1      , output_signals , 0   , 1.0    , 2
+c2      , output_signals , 0   , 1.0    , 2
+c1      , node_size      , 12  , 53.0   , 136
+c2      , node_size      , 34  , 120.0  , 225
+
+pipelines:
+circuit , stage   , executions , success , time-min , time-median , time-max
+c1      , compile , 10         , 10      , 0.07     , 0.18        , 0.43
+c2      , compile , 10         , 10      , 0.15     , 0.3         , 0.88
+c1      , witness , 10         , 10      , 0.0      , 0.01        , 0.07
+c2      , witness , 10         , 0       , 0.01     , 0.01        , 0.1
+c1      , prove   , -          , -       , -        , -           , -
+c2      , prove   , -          , -       , -        , -           , -
+c1      , verify  , -          , -       , -        , -           , -
+c2      , verify  , -          , -       , -        , -           , -
+
+stage   , executions , success , time , percent
+compile , 20         , 20      , 6s   , 91.37\%
+witness , 20         , 10      , 1s   , 8.63\%
+prove   , -          , -       , -    , -
+verify  , -          , -       , -    , -
+
+
+ == Bug Nr 11: 'min 1 bit for binary decompose', gnark == 
+
+circuits:
+    - min: 25, median: 402.0, max: 1660
+
+exploration time:
+    - min: 372.44, median: 1726.64, max: 6591.87
+
+timeouts: 0
+
+rewrite rules intersection: EMPTY SET
+
+errors:
+    - metamorphic violation in test cases : 10
+
+structural information:
+circuit , property       , min , median , max
+c1      , assertions     , 1   , 2.0    , 4
+c2      , assertions     , 1   , 2.0    , 4
+c1      , assignments    , 0   , 1.5    , 2
+c2      , assignments    , 0   , 1.5    , 2
+c1      , assumptions    , 0   , 0.0    , 2
+c2      , assumptions    , 0   , 0.0    , 2
+c1      , input_signals  , 0   , 1.0    , 2
+c2      , input_signals  , 0   , 1.0    , 2
+c1      , output_signals , 0   , 1.5    , 2
+c2      , output_signals , 0   , 1.5    , 2
+c1      , node_size      , 10  , 45.0   , 101
+c2      , node_size      , 21  , 99.5   , 162
+
+pipelines:
+circuit , stage   , executions , success , time-min , time-median , time-max
+c1      , compile , 10         , 3       , 0.0      , 0.12        , 0.33
+c2      , compile , 10         , 10      , 0.03     , 0.38        , 1.03
+c1      , witness , 3          , 0       , 0.0      , 0.0         , 0.02
+c2      , witness , 10         , 10      , 0.0      , 0.05        , 0.12
+c1      , prove   , -          , -       , -        , -           , -
+c2      , prove   , -          , -       , -        , -           , -
+c1      , verify  , -          , -       , -        , -           , -
+c2      , verify  , -          , -       , -        , -           , -
+
+stage   , executions , success , time , percent
+compile , 20         , 13      , 6s   , 92.12\%
+witness , 13         , 10      , 1s   , 7.88\%
+prove   , -          , -       , -    , -
+verify  , -          , -       , -    , -
+
+
+ == Bug Nr 12: 'unchecked casted branch', gnark == 
+
+circuits:
+    - min: 1279, median: 3311.5, max: 7289
+
+exploration time:
+    - min: 5540.95, median: 15174.2, max: 40753.83
+
+timeouts: 0
+
+rewrite rules intersection: EMPTY SET
+
+errors:
+    - metamorphic violation in test cases : 10
+
+structural information:
+circuit , property       , min , median , max
+c1      , assertions     , 0   , 2.5    , 5
+c2      , assertions     , 0   , 2.5    , 5
+c1      , assignments    , 1   , 2.0    , 2
+c2      , assignments    , 1   , 2.0    , 2
+c1      , assumptions    , 0   , 1.0    , 1
+c2      , assumptions    , 0   , 1.0    , 1
+c1      , input_signals  , 0   , 0.5    , 2
+c2      , input_signals  , 0   , 0.5    , 2
+c1      , output_signals , 1   , 2.0    , 2
+c2      , output_signals , 1   , 2.0    , 2
+c1      , node_size      , 24  , 62.0   , 114
+c2      , node_size      , 68  , 105.0  , 208
+
+pipelines:
+circuit , stage   , executions , success , time-min , time-median , time-max
+c1      , compile , 10         , 2       , 0.0      , 0.01        , 0.1
+c2      , compile , 10         , 8       , 0.01     , 0.07        , 0.14
+c1      , witness , 2          , 2       , 0.04     , 0.05        , 0.07
+c2      , witness , 8          , 8       , 0.0      , 0.05        , 0.14
+c1      , prove   , -          , -       , -        , -           , -
+c2      , prove   , -          , -       , -        , -           , -
+c1      , verify  , -          , -       , -        , -           , -
+c2      , verify  , -          , -       , -        , -           , -
+
+stage   , executions , success , time , percent
+compile , 20         , 10      , 1s   , 65.1\%
+witness , 10         , 10      , 1s   , 34.9\%
+prove   , -          , -       , -    , -
+verify  , -          , -       , -    , -
+
+
+ == Bug Nr 13: 'wrong assert', noir == 
+
+circuits:
+    - min: 44, median: 1104.0, max: 2572
+
+exploration time:
+    - min: 307.5, median: 4603.97, max: 10238.09
+
+timeouts: 0
+
+rewrite rules intersection: EMPTY SET
+
+errors:
+    - metamorphic violated execution : 8
+    - diverging debug signals : 2
+
+structural information:
+circuit , property       , min , median , max
+c1      , assertions     , 0   , 2.5    , 6
+c2      , assertions     , 0   , 2.5    , 6
+c1      , assignments    , 0   , 1.5    , 2
+c2      , assignments    , 0   , 1.5    , 2
+c1      , assumptions    , 0   , 0.0    , 1
+c2      , assumptions    , 0   , 0.0    , 1
+c1      , input_signals  , 1   , 1.5    , 2
+c2      , input_signals  , 1   , 1.5    , 2
+c1      , output_signals , 0   , 1.5    , 2
+c2      , output_signals , 0   , 1.5    , 2
+c1      , node_size      , 27  , 43.5   , 77
+c2      , node_size      , 43  , 89.5   , 169
+
+pipelines:
+circuit , stage   , executions , success , time-min , time-median , time-max
+c1      , execute , 10         , 2       , 0.44     , 0.47        , 0.61
+c2      , execute , 10         , 6       , 0.46     , 0.5         , 0.66
+c1      , prove   , -          , -       , -        , -           , -
+c2      , prove   , -          , -       , -        , -           , -
+c1      , verify  , -          , -       , -        , -           , -
+c2      , verify  , -          , -       , -        , -           , -
+
+stage   , executions , success , time , percent
+execute , 20         , 8       , 10s  , 100.0\%
+prove   , -          , -       , -    , -
+verify  , -          , -       , -    , -
+
+
+ == Bug Nr 14: 'bb prover error in MemBn254CrsFactory', noir == 
+
+circuits:
+    - min: 187, median: 3656, max: 4320
+
+exploration time:
+    - min: 2851.52, median: 46661.25, max: 55684.47
+
+timeouts: 1
+
+rewrite rules intersection: EMPTY SET
+
+errors:
+    - unknown proof error : 9
+
+structural information:
+circuit , property       , min , median , max
+c1      , assertions     , 0   , 0      , 2
+c2      , assertions     , 0   , 0      , 2
+c1      , assignments    , 1   , 2      , 2
+c2      , assignments    , 1   , 2      , 2
+c1      , assumptions    , 0   , 0      , 0
+c2      , assumptions    , 0   , 0      , 0
+c1      , input_signals  , 1   , 2      , 2
+c2      , input_signals  , 1   , 2      , 2
+c1      , output_signals , 1   , 2      , 2
+c2      , output_signals , 1   , 2      , 2
+c1      , node_size      , 9   , 23     , 33
+c2      , node_size      , 14  , 56     , 159
+
+pipelines:
+circuit , stage   , executions , success , time-min , time-median , time-max
+c1      , execute , 9          , 9       , 1.51     , 1.58        , 2.08
+c2      , execute , 9          , 9       , 1.52     , 1.57        , 2.17
+c1      , prove   , 9          , 7       , 0.04     , 3.7         , 11.11
+c2      , prove   , 9          , 2       , 0.05     , 0.12        , 32.3
+c1      , verify  , -          , -       , -        , -           , -
+c2      , verify  , -          , -       , -        , -           , -
+
+stage   , executions , success , time  , percent
+execute , 18         , 18      , 30s   , 27.36\%
+prove   , 18         , 9       , 1m20s , 72.64\%
+verify  , -          , -       , -     , -
+
+
+ == Bug Nr 15: 'stack overflow for lt-expressions', noir == 
+
+circuits:
+    - min: 1, median: 242.5, max: 932
+
+exploration time:
+    - min: 2.16, median: 3717.02, max: 13070.88
+
+timeouts: 0
+
+rewrite rules intersection:
+    - double-lor-con (32)
+    - double-negation-con (35)
+
+errors:
+    - unknown execution error : 10
+
+structural information:
+circuit , property       , min , median , max
+c1      , assertions     , 1   , 1.0    , 3
+c2      , assertions     , 1   , 1.0    , 3
+c1      , assignments    , 0   , 0.0    , 1
+c2      , assignments    , 0   , 0.0    , 1
+c1      , assumptions    , 0   , 0.0    , 1
+c2      , assumptions    , 0   , 0.0    , 1
+c1      , input_signals  , 0   , 1.0    , 2
+c2      , input_signals  , 0   , 1.0    , 2
+c1      , output_signals , 0   , 0.0    , 1
+c2      , output_signals , 0   , 0.0    , 1
+c1      , node_size      , 2   , 7.5    , 23
+c2      , node_size      , 75  , 165.5  , 301
+
+pipelines:
+circuit , stage   , executions , success , time-min , time-median , time-max
+c1      , execute , 10         , 4       , 1.58     , 1.72        , 2.95
+c2      , execute , 10         , 0       , 0.08     , 0.44        , 2.14
+c1      , prove   , -          , -       , -        , -           , -
+c2      , prove   , -          , -       , -        , -           , -
+c1      , verify  , -          , -       , -        , -           , -
+c2      , verify  , -          , -       , -        , -           , -
+
+stage   , executions , success , time , percent
+execute , 20         , 4       , 27s  , 100.0\%
+prove   , -          , -       , -    , -
+verify  , -          , -       , -    , -
+
+
+ == All Bugs ==
+
+exploration time:
+    - min: 2.16, median: 1178.99, max: 55684.47
+
+circuits:
+    - min: 1, median: 282, max: 7289
+
+Summary (Paper Table 2):
+tool   & bug-id & seeds & circ-SAT & time-min & time-median & time-max  & circ-min & circ-median & circ-max
+\hline
+\multirow{4}{*}{\circom}
+ & \bug{1}      & 10    & 20.89\%   & 38s      & 5m59s       & 22m42s    & 7        & 169.0       & 721\\
+ & \bug{2}      & 10    & 21.82\%   & 13m46s   & 22m43s      & 2h21m21s  & 366      & 656.5       & 6391\\
+ & \bug{3}      & 10    & 22.15\%   & 5m33s    & 30m36s      & 58m8s     & 84       & 993.5       & 2178\\
+ & \bug{4}      & 10    & 22.37\%   & 6s       & 6m34s       & 15m37s    & 31       & 165.0       & 435\\
+\hline
+\multirow{4}{*}{\corset}
+ & \bug{5}      & 10    & 44.22\%   & 5s       & 3m13s       & 7m24s     & 1        & 19.0        & 68\\
+ & \bug{6}      & 10    & 37.92\%   & 13s      & 6m57s       & 25m26s    & 4        & 67.0        & 239\\
+ & \bug{7}      & 10    & 41.28\%   & 4m57s    & 33m5s       & 1h18m57s  & 58       & 297.5       & 866\\
+ & \bug{8}      & 10    & 39.91\%   & 11s      & 7m30s       & 44m5s     & 4        & 95.5        & 389\\
+\hline
+\multirow{4}{*}{\gnark}
+ & \bug{9}      & 10    & 20.46\%   & 4m38s    & 18m22s      & 1h10m10s  & 27       & 225.0       & 1116\\
+ & \bug{10}     & 10    & 21.31\%   & 6m55s    & 24m55s      & 57m41s    & 36       & 324.5       & 886\\
+ & \bug{11}     & 10    & 20.32\%   & 6m12s    & 28m47s      & 1h49m52s  & 25       & 402.0       & 1660\\
+ & \bug{12}     & 10    & 21.01\%   & 1h32m21s & 4h12m54s    & 11h19m14s & 1279     & 3311.5      & 7289\\
+\hline
+\multirow{3}{*}{\noir} 
+ & \bug{13}     & 10    & 23.13\%   & 5m8s     & 1h16m44s    & 2h50m38s  & 44       & 1104.0      & 2572\\
+ & \bug{14}     & 9     & 23.0\%    & 47m32s   & 12h57m41s   & 15h28m4s  & 187      & 3656        & 4320\\
+ & \bug{15}     & 10    & 23.15\%   & 2s       & 1h1m57s     & 3h37m51s  & 1        & 242.5       & 932\\
+
+Effectiveness Comparison Table:
+tool   & bug-id & seeds & time-median & circ-median
+circom & 1      & 10    & 359.21      & 169.0
+circom & 2      & 10    & 1363.4      & 656.5
+circom & 3      & 10    & 1835.81     & 993.5
+circom & 4      & 10    & 394.18      & 165.0
+corset & \bug{5}      & 10    & 193.28      & 19.0
+corset & \bug{6}      & 10    & 417.07      & 67.0
+corset & \bug{7}      & 10    & 1985.07     & 297.5
+corset & \bug{8}      & 10    & 449.99      & 95.5
+gnark  & \bug{9}      & 10    & 1102.08     & 225.0
+gnark  & \bug{10}     & 10    & 1495.37     & 324.5
+gnark  & \bug{11}     & 10    & 1726.64     & 402.0
+gnark  & \bug{12}     & 10    & 15174.2     & 3311.5
+noir & \bug{13}     & 10    & 4603.97     & 1104.0
+noir & \bug{14}     & 9     & 46661.25    & 3656
+noir & \bug{15}     & 10    & 3717.02     & 242.5
+
+
++------------------------------+
+| Test Time Summary
++------------------------------+
+
+tool   , mean   , median , stdev  , min   , max     , count
+circom , 1.702  , 0.153  , 7.549  , 0.006 , 131.003 , 28528
+corset , 6.165  , 0.596  , 10.424 , 0.013 , 72.534  , 6301
+gnark  , 4.707  , 3.31   , 17.397 , 1.259 , 926.208 , 45835
+noir   , 10.845 , 6.296  , 19.618 , 0.932 , 264.964 , 45404
+
++------------------------------+
+| Circuit Info Summary
++------------------------------+
+
+tool   , circuit , property       , min , median , mean , max
+circom , c1      , assertions     , 0   , 4      , 4    , 8
+circom , c1      , assignments    , 0   , 1      , 1    , 2
+circom , c1      , assumptions    , 0   , 0      , 0    , 5
+circom , c1      , input_signals  , 0   , 1      , 1    , 2
+circom , c1      , output_signals , 0   , 1      , 1    , 2
+circom , c1      , node_size      , 0   , 67     , 71   , 287
+circom , c2      , assertions     , 0   , 4      , 4    , 8
+circom , c2      , assignments    , 0   , 1      , 1    , 2
+circom , c2      , assumptions    , 0   , 0      , 0    , 5
+circom , c2      , input_signals  , 0   , 1      , 1    , 2
+circom , c2      , output_signals , 0   , 1      , 1    , 2
+circom , c2      , node_size      , 0   , 113    , 116  , 453
+corset , c1      , assertions     , 0   , 4      , 4    , 8
+corset , c1      , assignments    , 0   , 1      , 1    , 2
+corset , c1      , assumptions    , 0   , 0      , 0    , 0
+corset , c1      , input_signals  , 0   , 1      , 1    , 2
+corset , c1      , output_signals , 0   , 1      , 1    , 2
+corset , c1      , node_size      , 0   , 55     , 59   , 232
+corset , c2      , assertions     , 0   , 4      , 4    , 8
+corset , c2      , assignments    , 0   , 1      , 1    , 2
+corset , c2      , assumptions    , 0   , 0      , 0    , 0
+corset , c2      , input_signals  , 0   , 1      , 1    , 2
+corset , c2      , output_signals , 0   , 1      , 1    , 2
+corset , c2      , node_size      , 0   , 82     , 86   , 539
+gnark  , c1      , assertions     , 0   , 4      , 4    , 8
+gnark  , c1      , assignments    , 0   , 1      , 1    , 2
+gnark  , c1      , assumptions    , 0   , 0      , 0    , 5
+gnark  , c1      , input_signals  , 0   , 1      , 1    , 2
+gnark  , c1      , output_signals , 0   , 1      , 1    , 2
+gnark  , c1      , node_size      , 0   , 66     , 71   , 272
+gnark  , c2      , assertions     , 0   , 4      , 4    , 8
+gnark  , c2      , assignments    , 0   , 1      , 1    , 2
+gnark  , c2      , assumptions    , 0   , 0      , 0    , 5
+gnark  , c2      , input_signals  , 0   , 1      , 1    , 2
+gnark  , c2      , output_signals , 0   , 1      , 1    , 2
+gnark  , c2      , node_size      , 0   , 112    , 115  , 451
+noir   , c1      , assertions     , 0   , 4      , 4    , 8
+noir   , c1      , assignments    , 0   , 1      , 1    , 2
+noir   , c1      , assumptions    , 0   , 0      , 0    , 4
+noir   , c1      , input_signals  , 0   , 1      , 1    , 2
+noir   , c1      , output_signals , 0   , 1      , 1    , 2
+noir   , c1      , node_size      , 0   , 45     , 48   , 184
+noir   , c2      , assertions     , 0   , 4      , 4    , 8
+noir   , c2      , assignments    , 0   , 1      , 1    , 2
+noir   , c2      , assumptions    , 0   , 0      , 0    , 4
+noir   , c2      , input_signals  , 0   , 1      , 1    , 2
+noir   , c2      , output_signals , 0   , 1      , 1    , 2
+noir   , c2      , node_size      , 0   , 90     , 93   , 585
+
++------------------------------+
+| Satisfiability of Circuits
++------------------------------+
+
+bug                                    , circuit seeds , SAT circuits , SAT percentage
+operator ~ (1/2)                       , 2576          , 538          , 20.89\%
+operator ~ (2/2)                       , 13292         , 2900         , 21.82\%
+inconsistent prime                     , 10881         , 2410         , 22.15\%
+wrong '~' evaluation on small curves   , 1779          , 398          , 22.37\%
+expansion and native flags             , 251           , 111          , 44.22\%
+wrong constraint for expansion         , 931           , 353          , 37.92\%
+reworked ifs                           , 3806          , 1571         , 41.28\%
+wrong evaluation of normalized loobean , 1313          , 524          , 39.91\%
+api.Or                                 , 2786          , 570          , 20.46\%
+api.AssertIsLessOrEqual                , 3661          , 780          , 21.31\%
+min 1 bit for binary decompose         , 5270          , 1071         , 20.32\%
+unchecked casted branch                , 34118         , 7168         , 21.01\%
+wrong assert                           , 11208         , 2592         , 23.13\%
+bb prover error in MemBn254CrsFactory  , 30581         , 7033         , 23.0\%
+stack overflow for lt-expressions      , 3615          , 837          , 23.15\%
+
++------------------------------+
+| Pipeline Info Summary
++------------------------------+
+
+tool   , stage   , executions , success , time      , percent
+circom , compile , 78918      , 43996   , 24m34s    , 3.28\%
+circom , witness , 43994      , 24037   , 5h59m43s  , 48.03\%
+circom , prove   , 1396       , 971     , 3h24m57s  , 27.36\%
+circom , verify  , 949        , 930     , 2h39m44s  , 21.33\%
+corset , check   , 37652      , 12140   , 5h42m24s  , 85.51\%
+corset , compile , 12450      , 12450   , 30m17s    , 7.56\%
+corset , witness , 6002       , 6002    , 14m32s    , 3.63\%
+corset , prove   , 6002       , 6002    , 13s       , 0.05\%
+corset , verify  , 5764       , 396     , 13m       , 3.25\%
+gnark  , compile , 183286     , 87329   , 11h8m55s  , 44.86\%
+gnark  , witness , 87329      , 37342   , 42m17s    , 2.84\%
+gnark  , prove   , 1618       , 692     , 12h59m47s , 52.3\%
+gnark  , verify  , 692        , 692     , 8s        , 0.01\%
+noir   , execute , 181400     , 40225   , 68h14m6s  , 50.18\%
+noir   , prove   , 17942      , 17933   , 37h16m29s , 27.41\%
+noir   , verify  , 17924      , 17924   , 30h28m29s , 22.41\%
+
