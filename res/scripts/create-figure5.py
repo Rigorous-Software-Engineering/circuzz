@@ -1,5 +1,6 @@
-import matplotlib.pyplot as plt
 import matplotlib as mpl
+mpl.use('Agg')
+import matplotlib.pyplot as plt
 import numpy as np
 import argparse
 import os
@@ -152,6 +153,10 @@ for cfg, file in files.items():
         data = lines[index+3:index+24]
         tool = ''
 
+        # prints Table2 for default
+        if cfg == "default":
+            print("".join(lines[index:index+24]))
+
         for l in data:
             if not l or l=='\n':
                 continue
@@ -272,8 +277,8 @@ def labelxticks(xticks, ints=False):
 
 fig, ax = plt.subplots()
 width = 0.25
-hfont = {'fontname': 'Helvetica','size': 14}
-mpl.rc('font', family='Helvetica', size=14)
+hfont = {'fontname': 'sans','size': 14}
+mpl.rc('font', family='sans', size=14)
 pipelines = list(all.keys())
 
 ind = np.arange(5)
@@ -308,4 +313,4 @@ ax.legend(handles=[timeBar, circuitsBar, satinsBar], loc='lower right')
 ax.spines['top'].set_visible(False)
 ax.spines['left'].set_visible(False)
 ax.spines.right.set_position(('data', 0))
-plt.savefig(f"{args.outdir}/figure6.pdf", format="pdf", bbox_inches="tight")
+plt.savefig(f"{args.outdir}/figure5.pdf", format="pdf", bbox_inches="tight")
