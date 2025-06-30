@@ -1410,15 +1410,29 @@ def main(data_root: Path, repetitions: int, ordered_bug_list: list[str], timeout
 
 if __name__ == "__main__":
 
-    if len(sys.argv) != 2:
+    if len(sys.argv) < 2:
         print("ERROR: no data root provided!")
         print("USAGE:")
-        print(f"    {sys.argv[0]} <DATA ROOT>")
+        print(f"    {sys.argv[0]} <DATA ROOT> [REPETITIONS] [TIME_LIMIT]")
+        print("")
+        print("    DATA ROOT ................ path to the experiment output folder")
+        print("    REPETITIONS .............. chosen number of repetitions for the bug")
+        print(f"                               finding loop (default={REPETITIONS})")
+        print("    TIME_LIMIT ............... chosen timeout (in seconds) used for a single")
+        print("                               bug execution. A wrong number here may produce")
+        print(f"                               wrong results! (default: {TIME_LIMIT})")
         exit(1)
 
     data_root = Path(sys.argv[1])
+    repetitions = REPETITIONS # use default
+    if len(sys.argv) >= 3:
+        repetitions = int(sys.argv[2])
+
+    time_limit = TIME_LIMIT # use default
+    if len(sys.argv) >= 4:
+        time_limit = int(sys.argv[3])
 
     if not data_root.is_dir():
         raise RuntimeError(f"unable to locate {data_root}")
 
-    main(data_root, REPETITIONS, BUG_LIST, TIME_LIMIT)
+    main(data_root, repetitions, BUG_LIST, time_limit)

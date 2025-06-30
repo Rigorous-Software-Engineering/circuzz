@@ -16,8 +16,9 @@ if not __package__:
     sys.path.insert(0, package_source_path)
 
 # check the python version as of 3.7 dictionaries are ordered which is a requirement!
-if sys.version_info[0] < 3 or (sys.version_info[0] == 3 and sys.version_info[1] < 7):
-    raise Exception("Python >=3.7 or a more recent version is required.")
+# Furthermore, some systems require 3.11 to use the `Enum` class.
+if sys.version_info[0] < 3 or (sys.version_info[0] == 3 and sys.version_info[1] < 11):
+    raise Exception("Python >=3.11 or a more recent version is required.")
 
 from circuzz.common.colorlogs import get_color_logger # pyright: ignore
 
