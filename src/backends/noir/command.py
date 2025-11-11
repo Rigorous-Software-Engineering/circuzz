@@ -35,13 +35,14 @@ def noir_version() -> ExecStatus:
 # bb, noir prover and verifier
 #
 
-def bb_prove(noir_json: Path, witness_gz: Path, proof: Path) -> ExecStatus:
+def bb_prove(noir_json: Path, witness_gz: Path, vk_file_path: Path, proof: Path) -> ExecStatus:
     assert shutil.which("bb"), "Unable to find 'bb' in PATH!"
     command = \
         [ shutil.which("bb")
         , "prove"
         , "-b", noir_json.as_posix()
         , "-w", witness_gz.as_posix()
+        , "-k", vk_file_path.as_posix()
         , "-o", proof.as_posix()
         ]
     return execute_command(command, "noir-bb-prove")
@@ -56,12 +57,13 @@ def bb_write_vk(noir_json: Path, vk: Path) -> ExecStatus:
         ]
     return execute_command(command, "noir-bb-write-vk")
 
-def bb_verify(vk: Path, proof: Path) -> ExecStatus:
+def bb_verify(vk: Path, proof: Path, inputs: Path) -> ExecStatus:
     assert shutil.which("bb"), "Unable to find 'bb' in PATH!"
     command = \
         [ shutil.which("bb")
         , "verify"
         , "-k", vk.as_posix()
         , "-p", proof.as_posix()
+        , "-i", inputs.as_posix()
         ]
     return execute_command(command, "noir-bb-verify")

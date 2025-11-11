@@ -129,7 +129,7 @@ def extract_assertion(error_msg: str) -> str | None:
     Parses a noir error message and tries to extract an assertion message.
     If no assertion can be found `None` is returned.
     """
-    assertion_failed_pattern = r"error: Assertion failed: '([^']+)'"
+    assertion_failed_pattern = r"error: Assertion failed: (.+)"
     failed_assertions: list[str] = list()
     error_lines = [line for line in error_msg.split("\n") if line.startswith("error: Assertion failed:")]
     for error_line in error_lines:
@@ -245,6 +245,15 @@ def prepare_project(root: Path, prefix: str, circuit: Circuit, curve: CurvePrime
 
     return working_dir
 
+def normalize_output(output: str) -> str:
+    lines = output.strip().splitlines()
+    normalized = []
+    for line in lines:
+        if line.startswith("[Test] Witness saved to"):
+            normalized.append("[Test] Witness saved to <some path>")
+        else:
+            normalized.append(line)
+    return "\n"
 
 # ================================================================
 #                          Testing
@@ -292,7 +301,7 @@ def analyze_metamorphic_relation \
         case MetamorphicKind.EQUAL:
             if failed_assertion_orig_or_none != failed_assertion_tf_or_none or \
                exec_orig.returncode != exec_tf.returncode or \
-               exec_orig.stdout != exec_tf.stdout:
+               normalize_output(exec_orig.stdout) != normalize_output(exec_tf.stdout):
                 logger.error(f"found metamorphic violation ({kind}) for noir execution state")
                 logger.debug(exec_orig)
                 logger.debug(exec_tf)
@@ -335,32 +344,6 @@ def prove_and_compare \
     proof_orig = original / "proof"
     proof_tf = transformed / "proof"
 
-    prove_exec_orig = bb_prove(noir_json_orig, witness_orig, proof_orig)
-    prove_exec_tf = bb_prove(noir_json_tf, witness_tf, proof_tf)
-
-    online_tuning.add_prove_or_verify_time(prove_exec_orig.delta_time)
-    online_tuning.add_prove_or_verify_time(prove_exec_tf.delta_time)
-
-    iteration.c1_bb_prove = prove_exec_orig.returncode == 0
-    iteration.c1_bb_prove_time = prove_exec_orig.delta_time
-    iteration.c2_bb_prove = prove_exec_tf.returncode == 0
-    iteration.c2_bb_prove_time = prove_exec_tf.delta_time
-
-    if check_for_ignored_errors(iteration, prove_exec_orig, prove_exec_tf):
-        return # abort, without error
-
-    # NOTE: currently vk generation is not expected to fail!
-    if prove_exec_orig.returncode != 0:
-        logger.error("unexpected error occurred during proof generation for the original project")
-        logger.debug(prove_exec_orig)
-        iteration.error = NoirError.UNKNOWN_PROOF_ERROR
-        return # abort
-    if prove_exec_tf.returncode != 0:
-        logger.error("unexpected error occurred during proof generation for the transformed project")
-        logger.debug(prove_exec_tf)
-        iteration.error = NoirError.UNKNOWN_PROOF_ERROR
-        return # abort
-
     vk_orig = original / "target" / "vk"
     vk_tf = transformed / "target" / "vk"
     write_vk_exec_orig = bb_write_vk(noir_json_orig, vk_orig)
@@ -386,9 +369,54 @@ def prove_and_compare \
         logger.debug(write_vk_exec_tf.stderr)
         iteration.error = NoirError.UNKNOWN_VK_KEY_ERROR
         return # abort
+    
+    # in older bb versions, the vk is dropped as a file at vk_orig/vk_tf.
+    # in newer versions, vk_orig/vk_tf are directories containing the actual file.
+    if vk_orig.is_dir():
+        vk_orig = vk_orig / "vk"
+    if vk_tf.is_dir():
+        vk_tf = vk_tf / "vk"
 
-    verify_exec_orig = bb_verify(vk_orig, proof_orig)
-    verify_exec_tf = bb_verify(vk_tf, proof_tf)
+    prove_exec_orig = bb_prove(noir_json_orig, witness_orig, vk_orig, proof_orig)
+    prove_exec_tf = bb_prove(noir_json_tf, witness_tf, vk_tf, proof_tf)
+
+    online_tuning.add_prove_or_verify_time(prove_exec_orig.delta_time)
+    online_tuning.add_prove_or_verify_time(prove_exec_tf.delta_time)
+
+    iteration.c1_bb_prove = prove_exec_orig.returncode == 0
+    iteration.c1_bb_prove_time = prove_exec_orig.delta_time
+    iteration.c2_bb_prove = prove_exec_tf.returncode == 0
+    iteration.c2_bb_prove_time = prove_exec_tf.delta_time
+
+    if check_for_ignored_errors(iteration, prove_exec_orig, prove_exec_tf):
+        return # abort, without error
+
+    # NOTE: currently vk generation is not expected to fail!
+    if prove_exec_orig.returncode != 0:
+        logger.error("unexpected error occurred during proof generation for the original project")
+        logger.debug(prove_exec_orig)
+        iteration.error = NoirError.UNKNOWN_PROOF_ERROR
+        return # abort
+    if prove_exec_tf.returncode != 0:
+        logger.error("unexpected error occurred during proof generation for the transformed project")
+        logger.debug(prove_exec_tf)
+        iteration.error = NoirError.UNKNOWN_PROOF_ERROR
+        return # abort
+
+    inputs_orig = proof_orig
+    inputs_tf = proof_tf
+
+    # in older bb versions, the proof and inputs are bundled and dropped as a file at proof_orig/proof_tf.
+    # in newer versions, proof_orig/proof_tf are directories containing the proof and input files.
+    if proof_orig.is_dir():
+        inputs_orig = proof_orig / "public_inputs"
+        proof_orig = proof_orig / "proof"
+    if proof_tf.is_dir():
+        inputs_tf = proof_tf / "public_inputs"
+        proof_tf = proof_tf / "proof"
+
+    verify_exec_orig = bb_verify(vk_orig, proof_orig, inputs_orig)
+    verify_exec_tf = bb_verify(vk_tf, proof_tf, inputs_tf)
 
     online_tuning.add_prove_or_verify_time(verify_exec_orig.delta_time)
     online_tuning.add_prove_or_verify_time(verify_exec_tf.delta_time)
