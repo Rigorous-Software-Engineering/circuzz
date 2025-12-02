@@ -1,4 +1,4 @@
-FROM debian:bookworm
+FROM ubuntu:24.04
 
 # non interactive to not get prompts during installations
 ENV DEBIAN_FRONTEND noninteractive

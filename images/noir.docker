@@ -12,6 +12,7 @@ FROM circuzz/noir-base
 #       builds it from scratch
 ARG BB_VERSION
 ARG BB_COMMIT
+ARG NOIR_COMMIT
 
 # TODO: delete the bb repo afterwards
 #
@@ -28,29 +29,18 @@ RUN if [ -n "$BB_COMMIT" ] ; then \
         mkdir -p mkdir /root/.bb && \
         mv ./build/bin/bb /root/.bb/ ; \
     else \
-        cd /circuzz/barretenberg/cpp/installation && \
-        /bin/bash install && \
-        /bin/bash -c 'source ~/.bashrc && bbup -v ${BB_VERSION}' ; \
+        cd /circuzz/barretenberg/bbup && \
+        ./bbup -v ${BB_VERSION} ; \
     fi
 ENV PATH="/root/.bb:${PATH}"
-
-# NOTE: this could be enabled in the future
-# install javascript barettenberg client (bb.js)
-# RUN npm install -g @aztec/bb.js@${BB_VERSION}
 
 # -------------------------------
 # noir setup
 # -------------------------------
 
-# specific noir commit
-ARG NOIR_COMMIT
-
-# build, installation and clean-up of of noir
-RUN cd /circuzz/noir && \
-    git reset --hard ${NOIR_COMMIT} && \
-    cargo install --path ./tooling/nargo_cli --locked && \
-    cd .. && \
-    rm -rf ./noir
+# install noir using noirup
+RUN . ~/.bashrc && noirup -C ${NOIR_COMMIT}
+ENV PATH="/root/.nargo/bin:${PATH}"
 
 # set working dir to be the mounted app folder
 WORKDIR /app
