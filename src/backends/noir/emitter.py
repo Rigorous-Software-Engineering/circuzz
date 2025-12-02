@@ -2,13 +2,13 @@ import io
 
 from .nodes import *
 
-class EmitVisitor():
 
+class EmitVisitor:
     def __init__(self):
         self.indent = 0
         self.buffer = io.StringIO()
 
-    def emit(self, node : ASTNode) -> str:
+    def emit(self, node: ASTNode) -> str:
         self.indent = 0
         self.buffer = io.StringIO()
         self.visit(node)
@@ -82,7 +82,7 @@ class EmitVisitor():
         self.buffer.write("(")
         self._print_comma_separated(node.arguments)
         self.buffer.write(")")
-   
+
     def visit_index_access_expression(self, node: IndexAccessExpression):
         self.visit(node.reference)
         self.buffer.write("[")
@@ -127,7 +127,6 @@ class EmitVisitor():
             self.buffer.write("\n")
         self.indent -= 4
         self.buffer.write(self.current_indent + "}")
-       
 
     def visit_let_statement(self, node: LetStatement):
         self.buffer.write(self.current_indent + "let ")
@@ -141,7 +140,7 @@ class EmitVisitor():
             self.buffer.write(" = ")
             self.visit(node.expr)
         self.buffer.write(";")
-   
+
     def visit_assign_statement(self, node: AssignStatement):
         self.buffer.write(self.current_indent)
         self.visit(node.lhs)
@@ -199,7 +198,7 @@ class EmitVisitor():
             if node.is_public_return:
                 self.buffer.write(f" -> pub {str(node.type_)}")
             else:
-                self.buffer.write(f" -> pub {str(node.type_)}")
+                self.buffer.write(f" -> {str(node.type_)}")
         if isinstance(node.body, BasicBlock):
             self.buffer.write(" ")
             self.visit(node.body)
