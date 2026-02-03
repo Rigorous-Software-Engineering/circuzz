@@ -279,7 +279,7 @@ def run_metamorphic_tests \
     # report panics as they might be interesting
     reported_panics = set()
     for line in lines:
-        log_pattern = re.compile(".*Test_(C[1,2]_\d+_\d+): (.+)") # pyright: ignore
+        log_pattern = re.compile(r".*Test_(C[1,2]_\d+_\d+): (.+)") # pyright: ignore
         log_match = log_pattern.match(line)
         if log_match and log_match.group(1) and log_match.group(2):
             circuit_name = log_match.group(1)
@@ -301,7 +301,7 @@ def run_metamorphic_tests \
             elif "prove & verify => start" in log_msg:
                 online_tuning.inc_prove_and_verify_exec()
             else:
-                msg_pattern = re.compile("^([^\s]+)( time)? (c[1|2]) => ([^\s]+)$") # pyright: ignore
+                msg_pattern = re.compile(r"^([^\s]+)( time)? (c[1|2]) => ([^\s]+)$") # pyright: ignore
                 msg_match = msg_pattern.match(log_msg)
                 if msg_match != None:
                     subject = msg_match.group(1)
@@ -422,7 +422,7 @@ def run_metamorphic_tests \
                                 else:
                                     curr_iteration.c2_verify = value == "ok"
 
-        err_pattern = re.compile("--- FAIL: Test_(C[1,2]_\d+_\d+) ") # pyright: ignore
+        err_pattern = re.compile(r"--- FAIL: Test_(C[1,2]_\d+_\d+) ") # pyright: ignore
         err_match = err_pattern.match(line)
         if err_match and err_match.group(1):
             circuit_name = err_match.group(1)
