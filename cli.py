@@ -121,7 +121,7 @@ def set_log_level(args: argparse.Namespace):
 
 def parse_hms(value: str) -> int:
 
-    hms_pattern = re.compile("^([0-9]+h)?([0-9]+m)?([0-9]+s)?$")
+    hms_pattern = re.compile(r"^(\d+h)?(\d+m)?(\d+s)?$")
     hms_match = hms_pattern.match(value)
     if hms_match == None:
         raise ValueError(f"expected HMS formatted value, e.g. '2h15m10s', but got '{value}'")

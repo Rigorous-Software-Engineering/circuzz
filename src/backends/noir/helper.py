@@ -285,7 +285,7 @@ def analyze_metamorphic_relation \
                 # NOTE: having multiple assertions would be optimal, but noir only gives you the first
                 #       that fails, which is why instead of a subset we get the last assertion if present
                 #       and check for the assertion (id: <number>)
-                assertion_id_pattern = r"\(id: ([0-9]+)\)"
+                assertion_id_pattern = r"\(id: (\d+)\)"
                 match_origin = re.search(assertion_id_pattern, failed_assertion_orig_or_none)
                 match_tf = re.search(assertion_id_pattern, failed_assertion_tf_or_none)
                 assert match_origin != None and match_tf != None, "assertion had no id, generation error!"
